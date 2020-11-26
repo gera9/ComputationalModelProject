@@ -1,9 +1,11 @@
+#Importamos la librería shiny
 library(shiny)
 
-# Define UI for app that draws a histogram ----
 ui <- fluidPage(
+  #Titulo de la pagina
   titlePanel(h1("M/M/S Model")),
   
+  #Lado lateral en el cual insertamos inputs de texto para que el usuario pueda ingresar datos
   sidebarLayout(
     sidebarPanel(
       numericInput("arrival-rate", h4("Arrival rate:"), value = 8), 
@@ -19,21 +21,26 @@ ui <- fluidPage(
       
       br(),
       br(),
+      #Botón para calcular datos
       submitButton("Calculate"),
       br(),
       br(),
+      #Imagen ilustrativa
       img(src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-7iu5srP1E4zn1oV2XygirR2AVpAqhnMZ4Q&usqp=CAU")
     ),
   
+    #Parte prinicpal donde se mostrarán los resultados
     mainPanel(
       fluidRow(
         column(12,
+               #Aquí se mostrará la notación de la línea de espera
                h2(textOutput("notation"), align="center"),
                hr()
         )
       ),
       fluidRow(
         column(12,
+               #Aquí se mostrarán los resultados de la línea de espera
                h3("Summary:"),
                br(),
                tableOutput("summary"),
@@ -44,6 +51,7 @@ ui <- fluidPage(
       
       fluidRow(
         column(12,
+               #Texto informativo
                h3("Where:", align = "center"),
                br(),
                p(strong("Pn"), " = Probabilitie that a queueing model (or network) has ", strong("n"), "customers", align = "center"),
@@ -66,11 +74,13 @@ ui <- fluidPage(
       fluidRow(
         column(6,
                h3("Pn:"),
+               #Aquí se mostrará la probabilidad de que un modelo de cola (o red) tenga n clientes.
                tableOutput("Pn")
                ),
         
         column(6,
                h3("Qn:"),
+               #Aqupi se mostrará la probabilidad de que una llegada que ingrese al sistema vea n clientes en él.
                tableOutput("Qn")  
         )
       )
